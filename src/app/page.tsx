@@ -163,10 +163,7 @@ export default function HomePage() {
                       : "h-56 md:h-64 flex-shrink-0"
                   }`}
                 >
-                  <div
-                    className="h-full w-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${service.image})` }}
-                  />
+                  <div className="h-full w-full bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
                 </div>
                 <div className="p-5 space-y-3 relative z-10 flex-shrink-0 flex flex-col justify-end mt-3">
                   <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
@@ -197,10 +194,7 @@ export default function HomePage() {
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/70 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.08)]"
               >
                 <div className="absolute inset-0 opacity-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 transition duration-200 group-hover:opacity-100" />
-                <div
-                  className="h-44 w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${template.image})` }}
-                />
+                <div className="h-44 w-full bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
                 <div className="p-5 space-y-3 relative z-10">
                   <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
                     <span>#0{idx + 1} Block</span>
@@ -244,10 +238,7 @@ export default function HomePage() {
                 href={`/portfolio/${project.slug}`}
                 className="card-shell group rounded-2xl overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-white/30"
               >
-                <div
-                  className="h-40 w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${project.image})` }}
-                />
+                <div className="h-40 w-full bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
                 <div className="p-6 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="text-xl font-semibold">{project.name}</div>
