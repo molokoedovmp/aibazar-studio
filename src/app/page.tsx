@@ -1,65 +1,314 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import SplineClient from "@/app/components/home/SplineClient";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/section-heading";
+import { marketplaceTemplates } from "@/data/marketplace";
+import { portfolioCases } from "@/data/portfolio";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "aibazar — разработка сайтов и дизайн-студия",
+  description:
+    "aibazar — студия, создающая премиальные сайты на Next.js, маркетплейсы и SaaS-опыт с продуманным UX/UI и автоматизацией.",
+  keywords: [
+    "aibazar",
+    "разработка сайтов",
+    "дизайн-студия",
+    "Next.js сайты",
+    "премиальный веб-дизайн",
+    "digital студия",
+  ],
+  openGraph: {
+    title: "aibazar — премиальная студия разработки сайтов",
+    description:
+      "Сайты на Next.js, маркетплейсы и SaaS-запуски с инженерной точностью.",
+    url: "https://aibazar.studio",
+    siteName: "aibazar studio",
+    images: [
+      {
+        url: "/og-base.svg",
+        width: 1200,
+        height: 630,
+        alt: "aibazar студия",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://aibazar.studio",
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "aibazar studio",
+  url: "https://aibazar.studio",
+  description:
+    "Premium digital-студия, создающая элитные сайты и продуктовые интерфейсы на Next.js.",
+  sameAs: [
+    "https://aibazar.studio/services",
+    "https://aibazar.studio/portfolio",
+    "https://aibazar.studio/marketplace",
+  ],
+  logo: "https://aibazar.studio/og-base.svg",
+};
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#ffffff14,transparent_45%)]" />
+      <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-16 space-y-16">
+        <section className="relative overflow-hidden rounded-3xl border border-white/15 bg-black/90">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.06),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.05),transparent_40%)]" />
+          <div className="hero-overlay" />
+          <div className="relative z-10 grid gap-8 p-10 md:grid-cols-5 md:items-center md:gap-12 lg:p-14">
+            <div className="flex flex-col gap-8 md:col-span-3">
+              <Badge variant="outline">Премиальная digital-студия</Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold leading-[1.04] tracking-tight">
+                aibazar создаёт премиальные{" "}
+                <span className="underline decoration-white/40">сайты на Next.js</span>.
+              </h1>
+              <p className="max-w-3xl text-lg text-white/70">
+                Стратегия, дизайн, разработка и автоматизация в одном цикле. Создаём лендинги,
+                маркетплейсы и SaaS-интерфейсы с чёткой типографикой, продуманным стэком и
+                SEO/конверсией по умолчанию.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact">
+                  <Button size="lg">Назначить созвон</Button>
+                </Link>
+                <Link href="/services">
+                  <Button size="lg" variant="outline">
+                    Посмотреть услуги
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {[
+                  { label: "Дизайн", value: "Сильная визуальная система" },
+                  { label: "Инженерия", value: "Next.js 16 / TypeScript" },
+                  { label: "Фокус", value: "Лендинги, SaaS, e-commerce, AI" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-white/20 bg-black/40 p-5 backdrop-blur transition hover:border-white/40"
+                  >
+                    <div className="text-xs uppercase tracking-[0.08em] text-white/60">
+                      {item.label}
+                    </div>
+                    <div className="mt-2 text-lg font-semibold">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative w-full max-w-md md:col-span-2 overflow-hidden rounded-3xl border border-white/10 bg-black/80 ml-auto">
+              <div className="aspect-square pointer-events-none">
+                <SplineClient scene="https://prod.spline.design/xasN6jN3w1ggRc6p/scene.splinecode" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-6 px-2 md:px-0">
+          <SectionHeading
+            label="Услуги"
+            title="Дизайн и разработка, которые двигают продукт"
+            description="От продуманной стратегии и UX/UI до продакшн-кода и автоматизации. Собираем сайты, маркетплейсы и SaaS-интерфейсы под реальные KPI."
+          />
+          <div className="grid gap-4 md:gap-5 md:grid-cols-12 auto-rows-[1fr]">
+            {[
+              {
+                title: "Разработка сайтов",
+                body: "Быстрые лендинги и системы с SEO-архитектурой и модульными блоками.",
+                image: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1200&q=80",
+                span: "md:col-span-4",
+              },
+              {
+                title: "Продуктовый дизайн",
+                body: "UX/UI для SaaS и e-commerce: активация, читаемая типографика и понятные флоу.",
+                image: "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1200&q=80",
+                span: "md:col-span-5",
+              },
+              {
+                title: "AI и автоматизация",
+                body: "Интеграции, пайплайны и интерфейсы под задачи автоматизации и внутренних процессов.",
+                image: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80",
+                span: "md:col-span-3 md:row-span-2",
+              },
+              {
+                title: "E-commerce",
+                body: "Витрины, PDP и корзины с мерчендайзингом и чистой архитектурой.",
+                image: "/ecom.png",
+                span: "md:col-span-6",
+              },
+              {
+                title: "SaaS & Reliability",
+                body: "Надёжные интерфейсы с понятной иерархией, метриками и поддержкой.",
+                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+                span: "md:col-span-3",
+              },
+            ].map((service, idx) => (
+              <Link
+                key={service.title}
+                href="/services"
+                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-black/60 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] ${service.span} flex flex-col`}
+              >
+                <div className="absolute inset-0 opacity-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 transition duration-200 group-hover:opacity-100" />
+                <div
+                  className={`w-full overflow-hidden rounded-[28px] ${
+                    service.title.includes("AI") ? "h-72 md:h-[620px]" : "h-48 md:h-60"
+                  }`}
+                >
+                  <div
+                    className="h-full w-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${service.image})` }}
+                  />
+                </div>
+                <div className="p-5 space-y-3 relative z-10 flex-1 flex flex-col justify-end">
+                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
+                    <span>#0{idx + 1} Block</span>
+                    <span className="h-6 w-6 rounded-full border border-white/20 flex items-center justify-center text-[10px]">
+                      ⓘ
+                    </span>
+                  </div>
+                  <div className="text-xl font-semibold">{service.title}</div>
+                  <p className="text-white/70">{service.body}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-8">
+          <SectionHeading
+            label="Маркетплейс"
+            title="Готовые к запуску шаблоны"
+            description="Лонч быстрее с SEO-индексируемыми шаблонами. Каждый построен на Next.js и shadcn/ui."
+          />
+          <div className="grid gap-6 md:grid-cols-3">
+            {marketplaceTemplates.slice(0, 3).map((template, idx) => (
+              <Link
+                key={template.slug}
+                href={`/marketplace/${template.slug}`}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/70 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.08)]"
+              >
+                <div className="absolute inset-0 opacity-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 transition duration-200 group-hover:opacity-100" />
+                <div
+                  className="h-44 w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${template.image})` }}
+                />
+                <div className="p-5 space-y-3 relative z-10">
+                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
+                    <span>#0{idx + 1} Block</span>
+                    <span className="h-6 w-6 rounded-full border border-white/20 flex items-center justify-center text-[10px]">
+                      ?
+                    </span>
+                  </div>
+                  <div className="text-xl font-semibold">{template.name}</div>
+                  <p className="text-white/70">{template.summary}</p>
+                  <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.08em] text-white/50">
+                    <span>{template.style}</span>
+                    <span className="text-white/30">/</span>
+                    <span>{template.theme}</span>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 text-sm">
+                    <span className="text-white/60">Категория: {template.category}</span>
+                    <span className="text-white group-hover:text-white/90">→</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/marketplace"
+            className="inline-flex text-sm uppercase tracking-[0.08em] hover:text-white/80"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            Открыть все шаблоны →
+          </Link>
+        </section>
+
+        <section className="space-y-8">
+          <SectionHeading
+            label="Портфолио"
+            title="Кейсы и реализованные проекты"
+            description="Доказательная база из живых проектов — структурированные кейсы для SEO, продаж и доверия."
+          />
+          <div className="grid gap-6 md:grid-cols-2">
+            {portfolioCases.slice(0, 4).map((project) => (
+              <Link
+                key={project.slug}
+                href={`/portfolio/${project.slug}`}
+                className="card-shell group rounded-2xl overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-white/30"
+              >
+                <div
+                  className="h-40 w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${project.image})` }}
+                />
+                <div className="p-6 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="text-xl font-semibold">{project.name}</div>
+                    <Badge variant="outline">{project.industry}</Badge>
+                  </div>
+                  <p className="text-white/70">{project.summary}</p>
+                  <div className="flex gap-4 text-xs uppercase tracking-[0.08em] text-white/50">
+                    <span>{project.year}</span>
+                    <span>Next.js</span>
+                    <span>UX/UI</span>
+                  </div>
+                  <div className="text-sm text-white/60 group-hover:text-white">
+                    Читать кейс →
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/portfolio"
+            className="inline-flex text-sm uppercase tracking-[0.08em] hover:text-white/80"
+          >
+            Полное портфолио →
+          </Link>
+        </section>
+
+        <section className="grid gap-8 md:grid-cols-2">
+          <div className="space-y-4">
+            <SectionHeading
+              label="О студии"
+              title="Студия, где стратегия, дизайн и код идут вместе"
+              description="aibazar — команда, которая собирает продукты под бизнес-цели: от смысла и UX до продакшн-кода и аналитики."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <p className="text-white/70">
+              Работаем со стартапами и зрелыми командами: сайты, маркетплейсы,
+              SaaS-дэшборды. Прозрачный процесс, измеримые KPI по конверсии, SEO,
+              скорости и качеству интерфейсов.
+            </p>
+          </div>
+          <div className="card-shell rounded-2xl p-6 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="text-xl font-semibold">Забронировать слот</div>
+              <Badge>Приоритет</Badge>
+            </div>
+            <p className="text-white/70">
+              Расскажите про ваш запуск — сайт, SaaS или новый маркетинговый спринт.
+              Ответим в течение одного рабочего дня.
+            </p>
+            <div className="flex gap-3">
+              <Link href="/contact">
+                <Button>Начать проект</Button>
+              </Link>
+              <Link href="/services">
+                <Button variant="outline">Услуги</Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
     </div>
   );
 }
