@@ -102,11 +102,11 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="relative w-full max-w-md md:col-span-2 overflow-hidden rounded-3xl border border-white/10 bg-black/80 ml-auto">
-              <div className="aspect-square pointer-events-none">
+            <div className="relative w-full md:col-span-2 min-h-[520px] lg:min-h-[620px]">
+              <div className="absolute inset-0 pointer-events-none">
                 <SplineClient scene="https://prod.spline.design/xasN6jN3w1ggRc6p/scene.splinecode" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-black/40 to-transparent" />
             </div>
           </div>
         </section>
@@ -153,12 +153,14 @@ export default function HomePage() {
               <Link
                 key={service.title}
                 href="/services"
-                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-black/60 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] ${service.span} flex flex-col`}
+                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-black/60 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] ${service.span} flex h-full flex-col`}
               >
                 <div className="absolute inset-0 opacity-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 transition duration-200 group-hover:opacity-100" />
                 <div
                   className={`w-full overflow-hidden rounded-[28px] ${
-                    service.title.includes("AI") ? "h-72 md:h-[620px]" : "h-48 md:h-60"
+                    service.title.includes("AI")
+                      ? "flex-1 min-h-[420px]"
+                      : "h-56 md:h-64 flex-shrink-0"
                   }`}
                 >
                   <div
@@ -166,7 +168,7 @@ export default function HomePage() {
                     style={{ backgroundImage: `url(${service.image})` }}
                   />
                 </div>
-                <div className="p-5 space-y-3 relative z-10 flex-1 flex flex-col justify-end">
+                <div className="p-5 space-y-3 relative z-10 flex-shrink-0 flex flex-col justify-end mt-3">
                   <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
                     <span>#0{idx + 1} Block</span>
                     <span className="h-6 w-6 rounded-full border border-white/20 flex items-center justify-center text-[10px]">

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
 import { portfolioCases } from "@/data/portfolio";
 
+import SplineClient from "@/app/components/home/SplineClient";
+
 export const metadata: Metadata = {
   title: "Услуги — разработка сайтов на Next.js",
   description:
@@ -42,6 +44,7 @@ const services = [
     title: "Кастомная разработка сайтов на Next.js",
     description:
       "Маркетинговые системы с модульными блоками, глобальными компонентами и SEO-архитектурой. Быстрые, адаптивные, готовы к росту.",
+    image: "/public.png",
     deliverables: [
       "Лендинги с героем, доказательствами, тарифами и FAQ",
       "Оптимизация скорости и подключение аналитики",
@@ -64,6 +67,7 @@ const services = [
     title: "E-commerce решения",
     description:
       "Конверсионные витрины с редакционным мерчендайзингом, нарративными PDP и быстрыми чекаутами.",
+    image: "/prod.png",
     deliverables: [
       "Коллекции, PDP и корзина",
       "Промо-лендинги под кампании",
@@ -75,6 +79,7 @@ const services = [
     title: "SaaS разработка",
     description:
       "Фронтенды для SaaS с онбордингом под активацию, дэшбордами и самообслуживанием тарифа.",
+    image: "/saas.png",
     deliverables: [
       "Маркетинговые сайты продукта",
       "In-app UI и наборы компонентов",
@@ -86,6 +91,7 @@ const services = [
     title: "AI-автоматизация",
     description:
       "AI-интерфейсы и автоматизация процессов: ясные промпты, защитные сценарии и измеримый ROI.",
+    image: "/n8n.png",
     deliverables: [
       "Стратегия и интеграция автоматизаций",
       "Дизайн интерфейсов для AI-копилотов",
@@ -97,6 +103,7 @@ const services = [
     title: "Брендинг",
     description:
       "Айдентика — логотип, типографика и гайды запуска, согласованные с цифровыми поверхностями.",
+    image: "/logo.png",
     deliverables: [
       "Визуальная айдентика и гайдлайны",
       "Лонч-киты и соц-ассеты",
@@ -106,26 +113,11 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  const visuals = {
-    custom: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1200&q=80",
-    uxui: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
-    ecommerce: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1200&q=80",
-    saas: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
-    ai: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80",
-    branding: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-  };
-
-  const heroNature =
-    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80";
-
   return (
     <div className="mx-auto max-w-6xl px-6 py-16 space-y-16">
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/70 px-6 py-12 md:px-10">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url(${heroNature})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/75 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.05),transparent_40%)]" />
         <div className="relative space-y-5">
           <SectionHeading
             label="Услуги"
@@ -141,31 +133,31 @@ export default function ServicesPage() {
 
       <div className="grid gap-12">
         {services.map((service, idx) => {
-          const media =
-            service.id === "custom-web"
-              ? visuals.custom
-              : service.id === "ux-ui"
-              ? visuals.uxui
-              : service.id === "ecommerce"
-              ? visuals.ecommerce
-              : service.id === "saas"
-              ? visuals.saas
-              : service.id === "ai-automation"
-              ? visuals.ai
-              : visuals.branding;
-
+          const hasImage = Boolean((service as { image?: string }).image);
+          const serviceImage = (service as { image?: string }).image;
           const square = (
             <div className="relative w-full overflow-hidden rounded-3xl bg-white/5 border border-white/10 transition duration-200 hover:-translate-y-1 hover:border-white/20">
               <div
-                className="aspect-square bg-cover bg-center opacity-90"
-                style={{ backgroundImage: `url(${media})` }}
+                className={
+                  hasImage
+                    ? "aspect-square bg-cover bg-center"
+                    : "aspect-square bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_45%),radial-gradient(circle_at_70%_60%,rgba(255,255,255,0.05),transparent_40%),linear-gradient(135deg,rgba(255,255,255,0.05),transparent)]"
+                }
+                style={hasImage ? { backgroundImage: `url(${serviceImage})` } : undefined}
               />
               <div className="absolute inset-0 bg-gradient-to-br from-black/25 via-transparent to-black/45" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-14 w-14 rounded-2xl bg-white/15 backdrop-blur border border-white/20" />
-              </div>
             </div>
           );
+
+          const splineBlock =
+            idx === 1 ? (
+              <div className="relative w-full overflow-hidden rounded-3xl border border-white/10 bg-black/80">
+                <div className="aspect-square">
+                  <SplineClient scene="https://prod.spline.design/xasN6jN3w1ggRc6p/scene.splinecode" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
+              </div>
+            ) : null;
 
           const text = (
             <div className="space-y-4">
@@ -213,6 +205,8 @@ export default function ServicesPage() {
             </div>
           );
 
+          const visual = splineBlock ?? square;
+
           return (
             <section
               key={service.id}
@@ -222,11 +216,11 @@ export default function ServicesPage() {
               {idx % 2 === 0 ? (
                 <>
                   {text}
-                  {square}
+                  {visual}
                 </>
               ) : (
                 <>
-                  {square}
+                  {visual}
                   {text}
                 </>
               )}

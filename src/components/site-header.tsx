@@ -22,7 +22,7 @@ export function SiteHeader({ dense = false }: SiteHeaderProps) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold">
           <div className="flex items-center gap-2">
-            <div className="h-9 w-9 overflow-hidden rounded-full border border-white/15">
+            <div className="h-9 w-9 overflow-hidden rounded-full border border-white/80 ring-[0.5px] ring-white/80 bg-black">
               <Image
                 src="/Logo2.png"
                 alt="aibazar logo"
