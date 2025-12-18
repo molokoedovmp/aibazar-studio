@@ -6,23 +6,36 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
 import { marketplaceTemplates } from "@/data/marketplace";
 import { portfolioCases } from "@/data/portfolio";
+import MagicBento from "@/components/section-services";
+import CardSwap, { Card as SwapCard } from "@/components/card-swap";
+import LogoLoop from "@/components/LogoLoop";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiDocker,
+  SiGit,
+  SiPrisma,
+  SiSupabase,
+  SiVercel,
+} from "react-icons/si";
 
 export const metadata: Metadata = {
   title: "aibazar — разработка сайтов и дизайн-студия",
   description:
-    "aibazar — студия, создающая премиальные сайты на Next.js, маркетплейсы и SaaS-опыт с продуманным UX/UI и автоматизацией.",
+    "aibazar — студия, которая делает сайты, интернет-магазины и сервисы с понятным дизайном и быстрой работой.",
   keywords: [
     "aibazar",
     "разработка сайтов",
     "дизайн-студия",
-    "Next.js сайты",
-    "премиальный веб-дизайн",
-    "digital студия",
+    "веб-дизайн",
+    "студия сайтов",
+    "веб-разработка",
   ],
   openGraph: {
-    title: "aibazar — премиальная студия разработки сайтов",
-    description:
-      "Сайты на Next.js, маркетплейсы и SaaS-запуски с инженерной точностью.",
+    title: "aibazar — студия разработки сайтов и сервисов",
+    description: "Сайты, маркетплейсы и сервисы с простым и понятным дизайном.",
     url: "https://aibazar.studio",
     siteName: "aibazar studio",
     images: [
@@ -44,8 +57,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "aibazar studio",
   url: "https://aibazar.studio",
-  description:
-    "Premium digital-студия, создающая элитные сайты и продуктовые интерфейсы на Next.js.",
+  description: "Студия, которая делает сайты и интерфейсы с упором на простоту и скорость.",
   sameAs: [
     "https://aibazar.studio/services",
     "https://aibazar.studio/portfolio",
@@ -54,29 +66,39 @@ const organizationJsonLd = {
   logo: "https://aibazar.studio/og-base.svg",
 };
 
+const techLogos = [
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
+  { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
+  { node: <SiPrisma />, title: "Prisma", href: "https://www.prisma.io" },
+  { node: <SiSupabase />, title: "Supabase", href: "https://supabase.com" },
+  { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
+];
+
 export default function HomePage() {
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#ffffff14,transparent_45%)]" />
-      <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-16 space-y-16">
+      <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-10 md:pt-12 space-y-16">
         <section className="relative overflow-hidden rounded-3xl border border-white/15 bg-black/90">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.06),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.05),transparent_40%)]" />
           <div className="hero-overlay" />
           <div className="relative z-10 grid gap-8 p-10 md:grid-cols-5 md:items-center md:gap-12 lg:p-14">
             <div className="flex flex-col gap-8 md:col-span-3">
-              <Badge variant="outline">Премиальная digital-студия</Badge>
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold leading-[1.04] tracking-tight">
-                aibazar создаёт премиальные{" "}
-                <span className="underline decoration-white/40">сайты на Next.js</span>.
+                aibazar делает{" "}
+                <span className="underline decoration-white/40">сайты и сервисы</span>, которые дают понятный результат.
               </h1>
               <p className="max-w-3xl text-lg text-white/70">
-                Стратегия, дизайн, разработка и автоматизация в одном цикле. Создаём лендинги,
-                маркетплейсы и SaaS-интерфейсы с чёткой типографикой, продуманным стэком и
-                SEO/конверсией по умолчанию.
+                Берём на себя план, дизайн и разработку. Делаем лендинги, магазины и личные кабинеты так,
+                чтобы ими было удобно пользоваться и их можно было быстро развивать.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact">
-                  <Button size="lg">Назначить созвон</Button>
+                  <Button size="lg">Оставить заявку</Button>
                 </Link>
                 <Link href="/services">
                   <Button size="lg" variant="outline">
@@ -84,23 +106,22 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </div>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="flex flex-wrap gap-3">
                 {[
-                  { label: "Дизайн", value: "Сильная визуальная система" },
-                  { label: "Инженерия", value: "Next.js 16 / TypeScript" },
-                  { label: "Фокус", value: "Лендинги, SaaS, e-commerce, AI" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-white/20 bg-black/40 p-5 backdrop-blur transition hover:border-white/40"
+                  "16+ проектов за год",
+                  "Современный стек: TypeScript, React",
+                  "Ответ в течение 1 рабочего дня",
+                  "Дизайн и разработка вместе",
+                ].map((pill) => (
+                  <span
+                    key={pill}
+                    className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/70"
                   >
-                    <div className="text-xs uppercase tracking-[0.08em] text-white/60">
-                      {item.label}
-                    </div>
-                    <div className="mt-2 text-lg font-semibold">{item.value}</div>
-                  </div>
+                    {pill}
+                  </span>
                 ))}
               </div>
+              
             </div>
             <div className="relative w-full md:col-span-2 min-h-[520px] lg:min-h-[620px]">
               <div className="absolute inset-0 pointer-events-none">
@@ -114,77 +135,93 @@ export default function HomePage() {
         <section className="space-y-6 px-2 md:px-0">
           <SectionHeading
             label="Услуги"
-            title="Дизайн и разработка, которые двигают продукт"
-            description="От продуманной стратегии и UX/UI до продакшн-кода и автоматизации. Собираем сайты, маркетплейсы и SaaS-интерфейсы под реальные KPI."
+            title="Дизайн и разработка под задачу"
+            description="Планируем, рисуем и собираем в коде сайты, магазины и сервисы, чтобы вы быстрее запустились и получили результат."
           />
-          <div className="grid gap-4 md:gap-5 md:grid-cols-12 auto-rows-[1fr]">
-            {[
-              {
-                title: "Разработка сайтов",
-                body: "Быстрые лендинги и системы с SEO-архитектурой и модульными блоками.",
-                image: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1200&q=80",
-                span: "md:col-span-4",
-              },
-              {
-                title: "Продуктовый дизайн",
-                body: "UX/UI для SaaS и e-commerce: активация, читаемая типографика и понятные флоу.",
-                image: "https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1200&q=80",
-                span: "md:col-span-5",
-              },
-              {
-                title: "AI и автоматизация",
-                body: "Интеграции, пайплайны и интерфейсы под задачи автоматизации и внутренних процессов.",
-                image: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80",
-                span: "md:col-span-3 md:row-span-2",
-              },
-              {
-                title: "E-commerce",
-                body: "Витрины, PDP и корзины с мерчендайзингом и чистой архитектурой.",
-                image: "/ecom.png",
-                span: "md:col-span-6",
-              },
-              {
-                title: "SaaS & Reliability",
-                body: "Надёжные интерфейсы с понятной иерархией, метриками и поддержкой.",
-                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-                span: "md:col-span-3",
-              },
-            ].map((service, idx) => (
+          <MagicBento />
+        </section>
+        
+
+        <section className="space-y-8 mt-20 md:mt-28" style={{ marginTop: "6cm" }}>
+          <div className="grid gap-8 md:grid-cols-[1.05fr_1fr] items-start">
+            <div className="space-y-4 max-w-2xl self-start">
+              <Badge variant="outline">Портфолио</Badge>
+              <h3 className="text-3xl md:text-4xl font-semibold leading-tight">
+                Проекты и кейсы
+              </h3>
+              <p className="text-white/70 text-lg">
+                Посмотрите, какие сайты и сервисы мы уже сделали. Коротко показываем задачу и результат.
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm text-white/60">
+                <span className="rounded-full border border-white/15 px-3 py-1">Next.js</span>
+                <span className="rounded-full border border-white/15 px-3 py-1">UX/UI</span>
+                <span className="rounded-full border border-white/15 px-3 py-1">SEO</span>
+                <span className="rounded-full border border-white/15 px-3 py-1">Автоматизация</span>
+              </div>
               <Link
-                key={service.title}
-                href="/services"
-                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-black/60 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] ${service.span} flex h-full flex-col`}
+                href="/portfolio"
+                className="inline-flex text-sm uppercase tracking-[0.08em] hover:text-white/80"
               >
-                <div className="absolute inset-0 opacity-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 transition duration-200 group-hover:opacity-100" />
-                <div
-                  className={`w-full overflow-hidden rounded-[28px] ${
-                    service.title.includes("AI")
-                      ? "flex-1 min-h-[420px]"
-                      : "h-56 md:h-64 flex-shrink-0"
-                  }`}
-                >
-                  <div className="h-full w-full bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
-                </div>
-                <div className="p-5 space-y-3 relative z-10 flex-shrink-0 flex flex-col justify-end mt-3">
-                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
-                    <span>#0{idx + 1} Block</span>
-                    <span className="h-6 w-6 rounded-full border border-white/20 flex items-center justify-center text-[10px]">
-                      ⓘ
-                    </span>
-                  </div>
-                  <div className="text-xl font-semibold">{service.title}</div>
-                  <p className="text-white/70">{service.body}</p>
-                </div>
+                Полное портфолио →
               </Link>
-            ))}
+            </div>
+          <div className="relative min-h-[440px] flex items-center justify-center">
+            <CardSwap
+              width={460}
+              height={320}
+              cardDistance={58}
+                verticalDistance={68}
+                delay={4200}
+                pauseOnHover
+                easing="elastic"
+                className="relative translate-x-[0%] translate-y-[2%] scale-[0.86] md:scale-[0.94]"
+              >
+                {portfolioCases.slice(0, 3).map((project, idx) => (
+                  <SwapCard
+                    key={project.slug}
+                    className="overflow-hidden border border-white/80 bg-black/90 shadow-[0_0_30px_rgba(0,0,0,0.55)]"
+                  >
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%), url(${project.image})`,
+                      }}
+                    />
+                    <div className="relative flex h-full flex-col justify-between p-6">
+                      <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
+                        <span>#{idx + 1} {project.industry}</span>
+                        <span>{project.year}</span>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-center justify_between gap-3">
+                          <h4 className="text-xl font-semibold">{project.name}</h4>
+                          <Badge variant="outline">{project.technologies[0]}</Badge>
+                        </div>
+                        <p className="text-white/70 line-clamp-3">{project.summary}</p>
+                        <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.08em] text-white/60">
+                          <span>{project.technologies.slice(0, 3).join(" / ")}</span>
+                          {project.metrics[0] ? (
+                            <>
+                              <span className="text-white/30">•</span>
+                              <span>{project.metrics[0].label} {project.metrics[0].value}</span>
+                            </>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+                  </SwapCard>
+                ))}
+              </CardSwap>
+            </div>
           </div>
         </section>
-
+        
         <section className="space-y-8">
           <SectionHeading
             label="Маркетплейс"
             title="Готовые к запуску шаблоны"
-            description="Лонч быстрее с SEO-индексируемыми шаблонами. Каждый построен на Next.js и shadcn/ui."
+            description="Шаблоны, которые уже готовы к публикации. Их видно поисковикам и их просто настроить под себя."
           />
           <div className="grid gap-6 md:grid-cols-3">
             {marketplaceTemplates.slice(0, 3).map((template, idx) => (
@@ -194,7 +231,15 @@ export default function HomePage() {
                 className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/70 transition duration-200 hover:-translate-y-1 hover:border-white/40 hover:shadow-[0_0_40px_rgba(255,255,255,0.08)]"
               >
                 <div className="absolute inset-0 opacity-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 transition duration-200 group-hover:opacity-100" />
-                <div className="h-44 w-full bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
+                <div className="relative h-44 w-full overflow-hidden rounded-2xl">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-cover bg-center transition duration-300 group-hover:scale-105"
+                    style={{
+                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.5) 100%), url(${template.image})`,
+                    }}
+                  />
+                </div>
                 <div className="p-5 space-y-3 relative z-10">
                   <div className="flex items-center justify-between text-xs uppercase tracking-[0.08em] text-white/60">
                     <span>#0{idx + 1} Block</span>
@@ -225,75 +270,78 @@ export default function HomePage() {
           </Link>
         </section>
 
-        <section className="space-y-8">
+        <section className="space-y-6">
           <SectionHeading
-            label="Портфолио"
-            title="Кейсы и реализованные проекты"
-            description="Доказательная база из живых проектов — структурированные кейсы для SEO, продаж и доверия."
+            label="Стек"
+            title="Технологический стек"
+            description="Инструменты, на которых собираем продукты и сервисы."
           />
-          <div className="grid gap-6 md:grid-cols-2">
-            {portfolioCases.slice(0, 4).map((project) => (
-              <Link
-                key={project.slug}
-                href={`/portfolio/${project.slug}`}
-                className="card-shell group rounded-2xl overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-white/30"
-              >
-                <div className="h-40 w-full bg-gradient-to-br from-white/10 via-white/5 to-transparent" />
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="text-xl font-semibold">{project.name}</div>
-                    <Badge variant="outline">{project.industry}</Badge>
-                  </div>
-                  <p className="text-white/70">{project.summary}</p>
-                  <div className="flex gap-4 text-xs uppercase tracking-[0.08em] text-white/50">
-                    <span>{project.year}</span>
-                    <span>Next.js</span>
-                    <span>UX/UI</span>
-                  </div>
-                  <div className="text-sm text-white/60 group-hover:text-white">
-                    Читать кейс →
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <Link
-            href="/portfolio"
-            className="inline-flex text-sm uppercase tracking-[0.08em] hover:text-white/80"
-          >
-            Полное портфолио →
-          </Link>
+          <LogoLoop
+            logos={techLogos}
+            speed={90}
+            direction="left"
+            logoHeight={56}
+            gap={48}
+            hoverSpeed={0}
+            fadeOut
+            fadeOutColor="#050505"
+            scaleOnHover
+            ariaLabel="Стек aibazar"
+            className="w-full"
+          />
         </section>
 
-        <section className="grid gap-8 md:grid-cols-2">
+        <section className="grid gap-10 md:grid-cols-2 items-start">
           <div className="space-y-4">
             <SectionHeading
               label="О студии"
-              title="Студия, где стратегия, дизайн и код идут вместе"
-              description="aibazar — команда, которая собирает продукты под бизнес-цели: от смысла и UX до продакшн-кода и аналитики."
+              title="Студия, где дизайн и код идут вместе"
+              description="aibazar — команда, которая делает продукты под ваши цели: от идеи и UX до готового кода и аналитики."
             />
             <p className="text-white/70">
               Работаем со стартапами и зрелыми командами: сайты, маркетплейсы,
-              SaaS-дэшборды. Прозрачный процесс, измеримые KPI по конверсии, SEO,
-              скорости и качеству интерфейсов.
+              панели и личные кабинеты. Регулярно показываем прогресс, следим за конверсией,
+              SEO, скоростью и удобством.
             </p>
           </div>
-          <div className="card-shell rounded-2xl p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="text-xl font-semibold">Забронировать слот</div>
-              <Badge>Приоритет</Badge>
-            </div>
-            <p className="text-white/70">
-              Расскажите про ваш запуск — сайт, SaaS или новый маркетинговый спринт.
-              Ответим в течение одного рабочего дня.
-            </p>
-            <div className="flex gap-3">
-              <Link href="/contact">
-                <Button>Начать проект</Button>
-              </Link>
-              <Link href="/services">
-                <Button variant="outline">Услуги</Button>
-              </Link>
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/2 to-transparent p-8 md:p-10 shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.06),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.05),transparent_40%)]" />
+            <div className="relative flex flex-col gap-6">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm uppercase tracking-[0.08em] text-white/60">
+                    Запись на звонок
+                  </div>
+                  <div className="text-2xl font-semibold">Запустим проект вместе</div>
+                </div>
+                <Badge variant="outline" className="bg-white text-black font-semibold">
+                  Запись
+                </Badge>
+              </div>
+              <p className="text-white/70 text-lg leading-relaxed">
+                Опишите задачу: сайт, сервис или маркетинговая кампания. Ответим с планом и
+                свободными датами в течение одного рабочего дня.
+              </p>
+              <div className="grid gap-3 text-sm text-white/60 md:grid-cols-2">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-xs uppercase tracking-[0.08em] text-white/50">Формат</div>
+                  <div className="text-white">30–45 минут звонка</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-xs uppercase tracking-[0.08em] text-white/50">Результат</div>
+                  <div className="text-white">Понятный план и сроки старта</div>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact">
+                  <Button size="lg">Оставить заявку</Button>
+                </Link>
+                <Link href="/services">
+                  <Button size="lg" variant="outline">
+                    Услуги
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

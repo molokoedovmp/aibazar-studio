@@ -15,10 +15,8 @@ export function SiteFooter() {
         <div className="flex flex-col gap-3 text-sm text-white/60">
           <div className="text-lg font-semibold text-white">aibazar</div>
           <p className="max-w-md">
-            Премиальная digital-студия, создающая выразительные веб-опыты на
-            Next.js с инженерной точностью.
+            Студия, которая делает понятные и быстрые сайты, сервисы и интерфейсы.
           </p>
-          <p>Next.js • Tailwind • shadcn/ui</p>
         </div>
         <div className="flex flex-wrap gap-4 text-sm uppercase tracking-[0.08em] text-white/70">
           {footerLinks.map((link) => (
